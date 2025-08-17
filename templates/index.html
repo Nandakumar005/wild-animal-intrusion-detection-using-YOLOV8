@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Live Detection</h2>
+<div class="row">
+    <div class="col-md-8">
+        <img src="{{ url_for('video_feed') }}" class="img-fluid" alt="Live Feed">
+    </div>
+    <div class="col-md-4">
+        <form method="POST" action="/start" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Video Source</label>
+                <select class="form-select" name="source" id="source">
+                    {% for source in sources %}
+                    <option value="{{ source }}">{{ source }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div id="cctvInput" class="mb-3" style="display: none;">
+                <label class="form-label">CCTV URL</label>
+                <input type="text" class="form-control" name="cctv_url" placeholder="rtsp://...">
+            </div>
+            
+            <div id="fileInput" class="mb-3" style="display: none;">
+                <label class="form-label">Video File</label>
+                <input type="file" class="form-control" name="video_file">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Start Detection</button>
+            <a href="/stop" class="btn btn-danger">Stop Detection</a>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('source').addEventListener('change', function() {
+    const cctv = document.getElementById('cctvInput');
+    const file = document.getElementById('fileInput');
+    
+    cctv.style.display = this.value === 'CCTV IP' ? 'block' : 'none';
+    file.style.display = this.value === 'Video File' ? 'block' : 'none';
+});
+</script>
+{% endblock %}

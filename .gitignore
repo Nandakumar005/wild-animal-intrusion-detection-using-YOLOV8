@@ -1,0 +1,22 @@
+# Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+project/
+
+# Logs
+*.log
+
+# Detections
+/detections/
+
+# Sensitive data
+config.py
+
+# IDE files
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

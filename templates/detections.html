@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Detection History</h2>
+<div class="row">
+    {% for detection in detections %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ url_for('static', filename='detections/' + detection.image) }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ ', '.join(detection.animals) }}</h5>
+                <p class="card-text">{{ detection.timestamp }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

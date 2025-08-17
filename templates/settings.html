@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Email Settings</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Recipient Email</label>
+        <input type="email" class="form-control" name="email" value="{{ current_email }}">
+    </div>
+    <button type="submit" class="btn btn-success">Update Email</button>
+</form>
+{% endblock %}
